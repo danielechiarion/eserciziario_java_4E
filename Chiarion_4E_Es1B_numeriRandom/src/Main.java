@@ -1,6 +1,5 @@
 import static utility.Tools.*;
 
-import java.lang.classfile.ClassReader;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -43,12 +42,19 @@ public class Main {
                 case 3:
                     do {
                         System.out.println("Inserisci il numero");
-                        inputNumero = scanner.nextInt();
+                        inputNumero = Integer.parseInt(scanner.nextLine());
                         if(inputNumero<MINRANGE || inputNumero>MAXRANGE){
                             System.out.println("Il numero non appartiene all'intervallo stabilito.");
                             clrScr();
                         }
-                    }while(numero<MINRANGE || numero>MAXRANGE)
+                    }while(inputNumero<MINRANGE || inputNumero>MAXRANGE);
+                    int posizione = cercaPosizione(arrayRandom, inputNumero);
+                    if(posizione<0)
+                        System.out.println("Il numero non è presente");
+                    else
+                        System.out.println("Il numero è nella posizione "+posizione);
+                    Wait(5);
+                    break;
                 default:
                     System.out.println("Fine programma");
             }
@@ -90,9 +96,11 @@ public class Main {
     /* metodo di ricerca per trovare un valore
     * inserito all'interno di un array */
     private static int cercaPosizione(int[] arrayRandom, int numero){
-        for(int i=0;i<arrayRandom.length;i++){
-            if(numero==arrayRandom[i])
-                return i;
+        if(arrayRandom!=null){
+            for(int i=0;i<arrayRandom.length;i++){
+                if(numero==arrayRandom[i])
+                    return i;
+            }
         }
 
         return -1;
