@@ -1,5 +1,6 @@
 import static utility.Tools.*;
 
+import java.lang.classfile.ClassReader;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,11 +11,12 @@ public class Main {
         final String[] opzioni = {"NUMERI RANDOM",  //predisposizione menu
                 "Inserimento",
                 "Visualizzazione",
+                "Ricerca",
                 "Fine"};
         Scanner scanner = new Scanner(System.in); //creazione oggetto scanner
 
         /* dichiarazioni variabili */
-        int scelta;
+        int scelta, inputNumero;
         /* dichiatarazione costanti */
         final int QUANTINUMERI = 10;
         final int MINRANGE = 0, MAXRANGE = 20;
@@ -38,6 +40,15 @@ public class Main {
                     System.out.println("Digita qualsiasi tasto per continuare");
                     scanner.nextLine();
                     break;
+                case 3:
+                    do {
+                        System.out.println("Inserisci il numero");
+                        inputNumero = scanner.nextInt();
+                        if(inputNumero<MINRANGE || inputNumero>MAXRANGE){
+                            System.out.println("Il numero non appartiene all'intervallo stabilito.");
+                            clrScr();
+                        }
+                    }while(numero<MINRANGE || numero>MAXRANGE)
                 default:
                     System.out.println("Fine programma");
             }
@@ -74,5 +85,16 @@ public class Main {
         for (int numero : array)
             System.out.print(numero + "\t");
         System.out.println();
+    }
+
+    /* metodo di ricerca per trovare un valore
+    * inserito all'interno di un array */
+    private static int cercaPosizione(int[] arrayRandom, int numero){
+        for(int i=0;i<arrayRandom.length;i++){
+            if(numero==arrayRandom[i])
+                return i;
+        }
+
+        return -1;
     }
 }
