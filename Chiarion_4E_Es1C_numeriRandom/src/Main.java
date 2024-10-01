@@ -1,5 +1,8 @@
+import javax.swing.*;
+
 import static utility.Tools.*;
 
+import java.security.cert.URICertStoreParameters;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,11 +16,13 @@ public class Main {
                 "Ricerca",
                 "Raddoppia dimensione vettore",
                 "Riempi vettore",
+                "Elimina numero",
+                "Ordina array",
                 "Fine"};
         Scanner scanner = new Scanner(System.in); //creazione oggetto scanner
 
         /* dichiarazioni variabili */
-        int scelta, inputNumero;
+        int scelta, inputNumero, risultato;
         /* dichiatarazione costanti */
         final int QUANTINUMERI = 10;
         final int MINRANGE = 0, MAXRANGE = 20;
@@ -67,13 +72,41 @@ public class Main {
                 case 5:
                     if(arrayRandom==null){
                         System.out.println("L'array è vuoto");
-                        Wait(3);
                     }
                     else{
                         System.out.println("Inserisci il numero: ");
                         inputNumero = Integer.parseInt(scanner.nextLine());
-                        riempiVettore(arrayRandom, inputNumero);
+                        risultato=riempiVettore(arrayRandom, inputNumero);
+                        if(risultato>0)
+                            System.out.println("Operazione riuscita");
+                        else
+                            System.out.println("Operazione fallita");
                     }
+                    Wait(3);
+                    break;
+                case 6:
+                    if(arrayRandom==null){
+                        System.out.println("L'array è vuoto");
+                    }
+                    else{
+                        System.out.println("Inserisci il numero: ");
+                        inputNumero = Integer.parseInt(scanner.nextLine());
+                        String[] opzioni2 = {"MODALITA' ELIMINAZIONE", "Azzeramento posizione", "Valori scalati"};
+                        int scelta2 = Menu(opzioni2, scanner);
+                        if(scelta2==1)
+                            risultato = azzeraPosArray(arrayRandom, inputNumero);
+                        else
+                            risultato = eliminaNumero(arrayRandom, inputNumero);
+                        if(risultato>0)
+                            System.out.println("Operazione riuscita");
+                        else
+                            System.out.println("Operazione fallita");
+                    }
+                    Wait(3);
+                    break;
+                case 7:
+                    selectionSort(arrayRandom);
+                    System.out.println("Ordinamento completato");
                     break;
                 default:
                     System.out.println("Fine programma");
@@ -138,15 +171,19 @@ public class Main {
 
     /* metodo che sostiusce i valori di 0
      * con un altro valore */
-    private static void riempiVettore(int[] array, int numero) {
+    private static int riempiVettore(int[] array, int numero) {
         int posNumero = cercaPosizione(array, numero);
 
         if (posNumero >= 0)
-            return;
+            return -1;
 
         int dimArray = contaPosOccupateArray(array);
-        if(dimArray<array.length)
+        if(dimArray<array.length){
             array[dimArray]=numero;
+            return 1;
+        }
+
+        return -1;
     }
 
     /* metodo che conta quanti elementi sono
@@ -158,5 +195,58 @@ public class Main {
             cont++;
 
         return cont;
+    }
+
+    /* metodo che cerca di trovare un elemento e,
+    * una volta trovato, lo sostiuisce con uno zero */
+    private static int azzeraPosArray(int array[], int numero){
+        int posizione = cercaPosizione(array, numero);
+
+        if(posizione>=0){
+            array[posizione]=0;
+            return 1;
+        }
+
+        return -1;
+    }
+
+    /* metodo che cerca di trovare un numero
+    * e lo elimina facendo scalare tutti gli altri valori */
+    private static int eliminaNumero(int array[], int numero){
+        int posizione = cercaPosizione(array, numero); //eseguo la ricerca del valore
+
+        if(posizione<0) //se non lo trovo ritorno -1
+            return -1;
+
+        /* altrimenti elimino il valore
+        * facendo scalare tutti i valori successivi */
+        for(int i=posizione;i<array.length-1;i++)
+            array[i]=array[i+1];
+
+        array[array.length-1]=0; //l'ultimo valore lo imposto a 0
+
+        return 1; //ritorno 1 se sono riuscito ad eseguire l'operazione
+    }
+
+    /* metodo che ordina un array utilizzando
+    * il selection sort */
+    private static void selectionSort(int[] array){
+        int temp;
+        int dimArray = contaPosOccupateArray(array);
+
+        if(array==null)
+            return;
+
+        for(int i=0;i<dimArray-1;i++){
+            for(int j=i+1;j<dimArray;j++){
+                /* ogni volta scorro i valori
+                * e determino il minimo */
+                if(array[j]<array[i]){
+                    temp=array[i];
+                    array[i]=array[j];
+                    array[j]=temp;
+                }
+            }
+        }
     }
 }
