@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22bee985-1498-43c5-953a-732ea5a51ce4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontScreen/FrontEnd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mensola/Genere.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mensola/Libro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utility/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontScreen/FrontEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontScreen/FrontEnd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mensola/Genere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mensola/Genere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/Tools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1728377340305</updated>
-      <workItem from="1728377341319" duration="1172000" />
+      <workItem from="1728377341319" duration="1928000" />
     </task>
     <servers />
   </component>

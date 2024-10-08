@@ -32,7 +32,7 @@ public class Tools {
             for (int i = 1; i < opzioni.length; i++) {
                 System.out.println(opzioni[i]);
             }
-            scelta = keyboard.nextInt();
+            scelta = Integer.parseInt(keyboard.nextLine());
             if (scelta < 1 || scelta > opzioni.length - 1) {
                 System.out.println("Valore errato. Riprova");
                 Wait(3);
