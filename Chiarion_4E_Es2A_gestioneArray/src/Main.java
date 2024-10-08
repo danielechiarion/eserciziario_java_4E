@@ -1,5 +1,3 @@
-import static array.operations.*;
-
 public class Main {
     public static void main(String[] args) {
         /* dichiazione variabili */
