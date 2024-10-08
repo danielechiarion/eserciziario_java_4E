@@ -8,14 +8,22 @@ import static utility.Tools.*;
 import java.time.LocalDate;
 
 public class FrontEnd {
-    public static Libro leggiLibro(Scanner scanner){
+    public static Libro leggiLibro(Scanner scanner, boolean noRepetitionMode, Libro[] array){
         Libro libro = new Libro();
+        int result;
 
         /* inserimento dati */
-        System.out.println("Inserisci autore: ");
-        libro.autore = scanner.nextLine();
-        System.out.println("Inserisci titolo: ");
-        libro.titolo = scanner.nextLine();
+        do{
+            System.out.println("Inserisci autore: ");
+            libro.autore = scanner.nextLine();
+            System.out.println("Inserisci titolo: ");
+            libro.titolo = scanner.nextLine();
+
+            result = Libro.searchBook(array, libro.autore, libro.titolo);
+
+            if(noRepetitionMode && result>=0)
+                System.out.println("Libro già esistente");
+        }while(noRepetitionMode && result>=0);
         System.out.println("Inserisci numero pagine: ");
         libro.numPagine = Integer.parseInt(scanner.nextLine());
         /* chiesto genere */
