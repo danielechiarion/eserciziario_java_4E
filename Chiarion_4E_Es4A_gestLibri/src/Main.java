@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         /* dichiarazione variabili */
-        int scelta;
+        int scelta=0;
         /* istanza vettori */
         String[] opzioni = {"OPZIONI POSSIBILI",
                             "Inserimento libro",
@@ -20,18 +20,23 @@ public class Main {
 
         /* ripeto ogni volta il ciclo */
         do{
-            scelta = menu(opzioni, keyboard);
-            switch(scelta){
-                case 1:
-                    libreria = extendArray(libreria);
-                    insertElementArray(libreria, FrontEnd.leggiLibro(keyboard, true, libreria));
-                    break;
-                case 2:
-                    Libro.printBookList(libreria);
-                    break;
-                default:
-                    System.out.println("Uscita programma");
-                    Wait(3);
+            try{
+                scelta = menu(opzioni, keyboard);
+                switch(scelta){
+                    case 1:
+                        libreria = extendArray(libreria);
+                        insertElementArray(libreria, FrontEnd.leggiLibro(keyboard, true, libreria));
+                        break;
+                    case 2:
+                        Libro.printBookList(libreria);
+                        break;
+                    default:
+                        System.out.println("Uscita programma");
+                        Wait(3);
+                }
+            }catch(NumberFormatException e){
+                System.out.println("Input out of domain!");
+                Wait(3);
             }
         }while(scelta!=opzioni.length-1);
     }

@@ -23,7 +23,7 @@ public class Tools {
 
 
 
-    public static int menu(String[] opzioni, Scanner keyboard) {
+    public static int menu(String[] opzioni, Scanner keyboard){
         int scelta;
 
         do {
