@@ -19,17 +19,11 @@ public class Libro {
                 this.autore, this.titolo, this.numPagine, this.tipologia.toString(), this.dataPubblicazione.format(formattazioneData), this.costoPerPagina*this.numPagine);
     }
 
-    public static int searchBook(Libro[] array, String autore, String titolo){
-        for(int i=0;i<array.length && array[i]!=null;i++)
-            if(array[i].autore.equals(autore) && array[i].titolo.equals(titolo))
-                return i;
+    @Override
+    public boolean equals(Libro libro){
+        if(this.autore.equals(libro.autore) && this.titolo.equals(libro.titolo))
+            return true;
 
-        return -1;
-    }
-
-    public static void printBookList(Libro[] array){
-        System.out.println("*** LIBRI INSERITI");
-        for(Libro libro : array)
-            System.out.println(libro.toString());
+        return false;
     }
 }

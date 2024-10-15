@@ -17,12 +17,13 @@ public class Array {
         return largeArray; //ritorno il nuovo array
     }
 
-    public static void insertElementArray(Libro[] array, Libro element){
+    public static void insertElementArray(Libro[] array, Libro element)throws ArrayIndexOutOfBoundsException{
         int effectiveDimension = effectiveDimensionArray(array);
 
         /* se l'array è pieno l'elemento non viene inserito */
-        if(effectiveDimension == array.length)
-            return;
+        if(effectiveDimension == array.length){
+            throw new ArrayIndexOutOfBoundsException("Mensola piena");
+        }
 
         array[effectiveDimension] = element; //altrimenti viene inserito nella prima posizione disponibile
     }

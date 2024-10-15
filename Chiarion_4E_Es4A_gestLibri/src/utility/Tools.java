@@ -21,8 +21,6 @@ public class Tools {
         }
     }
 
-
-
     public static int menu(String[] opzioni, Scanner keyboard){
         int scelta;
 
@@ -32,7 +30,12 @@ public class Tools {
             for (int i = 1; i < opzioni.length; i++) {
                 System.out.println("["+i+"] "+opzioni[i]);
             }
-            scelta = Integer.parseInt(keyboard.nextLine());
+            try{
+                scelta = Integer.parseInt(keyboard.nextLine());
+            }catch(NumberFormatException e){
+                System.out.println("Numero non valido");
+                scelta = 0;
+            }
             if (scelta < 1 || scelta > opzioni.length - 1) {
                 System.out.println("Valore errato. Riprova");
                 Wait(3);
