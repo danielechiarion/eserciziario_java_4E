@@ -18,7 +18,7 @@ public class Array {
     }
 
     public static void insertElementArray(Libro[] array, Libro element)throws ArrayIndexOutOfBoundsException{
-        int effectiveDimension = effectiveDimensionArray(array);
+        int effectiveDimension = actualDimensionArray(array);
 
         /* se l'array è pieno l'elemento non viene inserito */
         if(effectiveDimension == array.length){
@@ -30,7 +30,7 @@ public class Array {
 
     /* metodo che conta la dimensione effettiva di un array,
     * ovvero quante posizioni sono occupate */
-    public static int effectiveDimensionArray(Libro[] array){
+    public static int actualDimensionArray(Libro[] array){
         int cont=0;
 
         while(cont<array.length && array[cont]!=null)

@@ -19,7 +19,6 @@ public class Libro {
                 this.autore, this.titolo, this.numPagine, this.tipologia.toString(), this.dataPubblicazione.format(formattazioneData), this.costoPerPagina*this.numPagine);
     }
 
-    @Override
     public boolean equals(Libro libro){
         if(this.autore.equals(libro.autore) && this.titolo.equals(libro.titolo))
             return true;
