@@ -18,14 +18,14 @@ public class Array {
     }
 
     public static void insertElementArray(Libro[] array, Libro element)throws ArrayIndexOutOfBoundsException{
-        int effectiveDimension = actualDimensionArray(array);
+        int actualDimension = actualDimensionArray(array);
 
         /* se l'array è pieno l'elemento non viene inserito */
-        if(effectiveDimension == array.length){
+        if(actualDimension == array.length){
             throw new ArrayIndexOutOfBoundsException("Mensola piena");
         }
 
-        array[effectiveDimension] = element; //altrimenti viene inserito nella prima posizione disponibile
+        array[actualDimension] = element; //altrimenti viene inserito nella prima posizione disponibile
     }
 
     /* metodo che conta la dimensione effettiva di un array,

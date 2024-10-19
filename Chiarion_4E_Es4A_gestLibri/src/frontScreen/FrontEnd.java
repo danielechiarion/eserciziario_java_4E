@@ -14,15 +14,15 @@ public class FrontEnd {
         int result, scelta;
         boolean repeat;
 
-        /* inserimento dati */
-        do{
-            libro = inputDatiRicerca(false, scanner);
+        libro = inputDatiRicerca(1, scanner);
 
+        /* inserimento dati */
+        /*do{
             result = Libreria.searchBook(array, libro.autore, libro.titolo);
 
             if(noRepetitionMode && result>=0)
                 System.out.println("Libro già esistente");
-        }while(noRepetitionMode && result>=0);
+        }while(noRepetitionMode && result>=0); */
 
         libro.numPagine = inputNumPagine(scanner); //input numero di pagine
 
@@ -46,7 +46,7 @@ public class FrontEnd {
 
     /* metodo che stampa i valori del vettore in un array */
     public static void printBookList(Libro[] array){
-        System.out.println("*** LIBRI INSERITI");
+        System.out.println("*** LIBRI ***");
         for(int i=0;i<actualDimensionArray(array);i++)
             System.out.println(array[i].toString());
     }
@@ -54,12 +54,14 @@ public class FrontEnd {
     /* metodo che prevede i dati essenziali per l'input
     * della ricerca di un libro.
     * Vengono quindi chiesti autore e titolo, quest'ultimo se necessario */
-    public static Libro inputDatiRicerca(boolean soloAutore, Scanner scanner){
+    public static Libro inputDatiRicerca(int metodoRicerca, Scanner scanner){
         Libro libro = new Libro();
 
-        System.out.println("Inserisci autore:");
-        libro.autore = scanner.nextLine();
-        if(!soloAutore){
+        if(metodoRicerca==2 || metodoRicerca==1){
+            System.out.println("Inserisci autore:");
+            libro.autore = scanner.nextLine();
+        }
+        if(metodoRicerca==3 || metodoRicerca==1){
             System.out.println("Inserisci titolo:");
             libro.titolo = scanner.nextLine();
         }

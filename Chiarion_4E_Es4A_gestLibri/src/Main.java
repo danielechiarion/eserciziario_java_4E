@@ -18,6 +18,7 @@ public class Main {
                             "Cambia numero pagine",
                             "Rimuovi libro",
                             "Cerca libri dello stesso autore",
+                            "Cerca libri con lo stesso titolo",
                             "Fine"};
         Libro[] libreria = new Libro[dimensioneLibreria];
         /* creazione oggetti */
@@ -32,41 +33,54 @@ public class Main {
             switch(scelta){
                 case 1:
                     try{
-                        insertElementArray(libreria, FrontEnd.leggiLibro(keyboard, true, libreria));
+                        libroInput = FrontEnd.leggiLibro(keyboard, true, libreria);
+                        if(Libreria.searchBook(libreria, libroInput)<0)
+                            insertElementArray(libreria, libroInput);
+                        else
+                            System.out.println("Libro già esistente");
                     }catch(ArrayIndexOutOfBoundsException e){
                         System.out.println(e.getMessage());
                         Wait(3);
                     }
                     break;
                 case 2:
-                    FrontEnd.printBookList(libreria);
+                    try{
+                        Libreria.mensolaVuota(libreria);
+                        FrontEnd.printBookList(libreria);
+                        Wait(5);
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
+                        Wait(5);
+                    }
                     break;
                 case 3:
-                    libroInput = FrontEnd.inputDatiRicerca(false, keyboard);
-                    posizione = Libreria.searchBook(libreria, libroInput.autore, libroInput.titolo);
-                    if(posizione<0){
-                        System.out.println("Libro non trovato");
-                        Wait(3);
-                    }
-                    else{
+                    libroInput = FrontEnd.inputDatiRicerca(1, keyboard);
+                    posizione = Libreria.searchBook(libreria, libroInput);
+                    if(posizione>0){
                         int numPagine = FrontEnd.inputNumPagine(keyboard);
                         libreria[posizione].numPagine = numPagine;
                     }
                     break;
                 case 4:
-                    libroInput = FrontEnd.inputDatiRicerca(false, keyboard);
-                    posizione = Libreria.searchBook(libreria, libroInput.autore, libroInput.titolo);
-                    if(posizione<0){
-                        System.out.println("Libro non trovato");
-                        Wait(3);
-                    }
-                    else{
+                    libroInput = FrontEnd.inputDatiRicerca(1, keyboard);
+                    posizione = Libreria.searchBook(libreria, libroInput);
+                    if(posizione>0)
                         Libreria.rimuoviLibro(libreria, posizione);
-                    }
+                    else
+                        System.out.println("Libro non trovato");
                     break;
                 case 5:
-                    libroInput = FrontEnd.inputDatiRicerca(true, keyboard);
+                    libroInput = FrontEnd.inputDatiRicerca(2, keyboard);
                     Libreria.visualizzaLibroAutore(libreria, libroInput.autore);
+                    Wait(5);
+                    break;
+                case 6:
+                    try{
+                        libroInput = FrontEnd.inputDatiRicerca(3, keyboard);
+                        FrontEnd.printBookList(Libreria.findAll(libreria, libroInput));
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
+                    }
                     Wait(5);
                     break;
                 default:
