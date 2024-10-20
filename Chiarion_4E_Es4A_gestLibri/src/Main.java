@@ -19,6 +19,7 @@ public class Main {
                             "Rimuovi libro",
                             "Cerca libri dello stesso autore",
                             "Cerca libri con lo stesso titolo",
+                            "Trova posizioni libri con lo stesso titolo",
                             "Fine"};
         Libro[] libreria = new Libro[dimensioneLibreria];
         /* creazione oggetti */
@@ -77,7 +78,20 @@ public class Main {
                 case 6:
                     try{
                         libroInput = FrontEnd.inputDatiRicerca(3, keyboard);
-                        FrontEnd.printBookList(Libreria.findAll(libreria, libroInput));
+                        Libro[] risultato = Libreria.findAll(libreria, libroInput);
+                        System.out.println(risultato.length+" libri trovati");
+                        FrontEnd.printBookList(risultato);
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                    Wait(5);
+                    break;
+                case 7:
+                    try{
+                        libroInput = FrontEnd.inputDatiRicerca(3, keyboard);
+                        int[] risultato = Libreria.findPositions(libreria, libroInput);
+                        printIntArray(risultato);
+                        System.out.println(risultato.length+" libri trovati");
                     }catch(Exception e){
                         System.out.println(e.getMessage());
                     }

@@ -38,4 +38,12 @@ public class Array {
 
         return cont; //ritorna il contatore
     }
+
+    public static void printIntArray(int[] array)throws Exception{
+        if(array == null)
+            throw new Exception("Array vuoto");
+
+        for(int numero:array)
+            System.out.println(numero);
+    }
 }
