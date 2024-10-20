@@ -79,7 +79,7 @@ public class Main {
                     try{
                         libroInput = FrontEnd.inputDatiRicerca(3, keyboard);
                         Libro[] risultato = Libreria.findAll(libreria, libroInput);
-                        System.out.println(risultato.length+" libri trovati");
+                        System.out.println(Libreria.contaRisultati(libreria, libroInput)+" libri trovati");
                         FrontEnd.printBookList(risultato);
                     }catch(Exception e){
                         System.out.println(e.getMessage());
@@ -90,8 +90,8 @@ public class Main {
                     try{
                         libroInput = FrontEnd.inputDatiRicerca(3, keyboard);
                         int[] risultato = Libreria.findPositions(libreria, libroInput);
+                        System.out.println(Libreria.contaRisultati(libreria, libroInput)+" libri trovati");
                         printIntArray(risultato);
-                        System.out.println(risultato.length+" libri trovati");
                     }catch(Exception e){
                         System.out.println(e.getMessage());
                     }
