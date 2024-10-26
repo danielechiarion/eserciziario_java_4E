@@ -21,17 +21,17 @@ public class Libro {
 
     @Override
     public boolean equals(Object obj){
-        if(obj ==null || getClass() != obj.getClass())
+        if(obj ==null || this.getClass() != obj.getClass())
             return false;
         Libro libro = (Libro)obj;
         boolean risultato = false;
-        if(!libro.autore.isBlank()){
+        if(libro.autore != null && this.autore!=null){
             if(this.autore.equals(libro.autore))
                 risultato = true;
             else
                 risultato = false;
         }
-        if(!libro.titolo.isBlank()){
+        if(libro.titolo != null && this.titolo!=null){
             if(this.titolo.equals(libro.titolo))
                 risultato = true;
             else

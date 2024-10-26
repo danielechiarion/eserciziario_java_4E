@@ -16,6 +16,7 @@ public class Main {
                 "Libreria",
                 "Inserisci Libro",
                 "Visualizza tutti i libri inseriti",
+                "Ricerca libro",
                 "Modifica pagine libro",
                 "Cancella libro",
                 "Visualizza libri di un autore",
@@ -42,20 +43,32 @@ public class Main {
                     Wait(5);
                     break;
                 case 3:
+                    int posizione = libreria.indexOf(inputDatiRicerca(1,keyboard));
+                    if(posizione<0)
+                        System.out.println("Libro non trovato");
+                    else{
+                        System.out.println("Posizione "+posizione);
+                        System.out.println(libreria.get(posizione).toString());
+                    }
+                    Wait(3);
+                    break;
+                case 4:
                     try{
                         modificaPagineLibro(libreria, keyboard);
                     }catch(Exception e){
                         System.out.println(e.getMessage());
-                    }
-                    break;
-                case 4:
-                    try{
-                        libreria.remove(libreria.indexOf(inputDatiRicerca(1, keyboard)));
-                    }catch(Exception e){
-                        System.out.println(e.getMessage());
+                        Wait(3);
                     }
                     break;
                 case 5:
+                    try{
+                        libreria.remove(libreria.indexOf(inputDatiRicerca(1, keyboard)));
+                    }catch(Exception e){
+                        System.out.println("Nessun libro trovato o lista vuota");
+                        Wait(3);
+                    }
+                    break;
+                case 6:
                     try{
                         visualizzaLibriSimili(libreria, inputDatiRicerca(2,keyboard));
                     }catch(Exception e){
