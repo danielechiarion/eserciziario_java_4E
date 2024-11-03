@@ -1,6 +1,7 @@
 package gestPazienti;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.time.LocalDateTime;
 
@@ -36,7 +37,9 @@ public class Termometro {
 
     @Override
     public String toString() {
-        return String.format("Temperatura: %.1f - %s", this.temperatura, this.dataMisura.toString());
+        /* imposto un DateTimeFormatter per stampare la data */
+        DateTimeFormatter dt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return String.format("Temperatura: %.1f - %s", this.temperatura, this.dataMisura.format(dt));
     }
 
     @Override
