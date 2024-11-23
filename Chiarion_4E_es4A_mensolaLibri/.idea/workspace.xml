@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22bee985-1498-43c5-953a-732ea5a51ce4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/frontScreen/FrontEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontScreen/FrontEnd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mensola/Genere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mensola/Genere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +35,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/danielechiarion/Documenti/Software_Libreria_java/softwareLibreria_1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -49,8 +48,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
@@ -62,7 +61,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1728377340305</updated>
-      <workItem from="1728377341319" duration="1928000" />
+      <workItem from="1728377341319" duration="2248000" />
+      <workItem from="1730889689525" duration="13000" />
+      <workItem from="1731491951125" duration="15000" />
     </task>
     <servers />
   </component>
