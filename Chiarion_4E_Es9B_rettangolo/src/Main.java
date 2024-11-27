@@ -4,6 +4,7 @@ public class Main {
         Punto puntoA = new Punto();
         Punto puntoC = new Punto();
         Rettangolo rettangolo = null;
+        int deltaX = 2, deltaY = 5;
 
         /* istanzio gli oggetti per l'esecuzione del codice,
         * gestendo eventuali eccezioni */
@@ -23,6 +24,15 @@ public class Main {
             System.out.println(rettangolo.toString());
             rettangolo.stampaRettangolo();
         }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        /* effetto la traslazione */
+        try{
+            rettangolo.traslaRettangolo(deltaX, deltaY);
+            System.out.println("Il rettangolo è stato traslato");
+            System.out.println(rettangolo.toString());
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }

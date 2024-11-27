@@ -41,6 +41,13 @@ public class Punto {
         this.y = y;
     }
 
+    /* metodo per la traslazione di punto
+    * di x unità e y unità */
+    public void traslaPunto(int deltaX, int deltaY){
+        this.x += deltaX;
+        this.y += deltaY;
+    }
+
     /* metodo che ritorna il quadrante dove il punto è posizionato */
     public int getQuadrante() throws Exception {
         if (this.x > 0 && this.y > 0)

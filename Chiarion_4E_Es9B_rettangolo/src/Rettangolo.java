@@ -87,6 +87,13 @@ public class Rettangolo {
             return this.calcolaBase() == rettangoloConfronto.calcolaBase() && this.calcolaAltezza() == rettangoloConfronto.calcolaAltezza();
     }
 
+    /* metodo che trasla i punti della diagonale
+    * di un rettangolo */
+    public void traslaRettangolo(int deltaX, int deltaY){
+        this.puntoDiagonaleA.traslaPunto(deltaX, deltaY);
+        this.puntoDiagonaleB.traslaPunto(deltaX, deltaY);
+    }
+
     /* override del metodo toString */
     @Override
     public String toString(){
