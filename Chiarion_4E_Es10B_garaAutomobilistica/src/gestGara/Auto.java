@@ -45,6 +45,8 @@ public class Auto {
         this.nomeScuderia = nomeScuderia;
         this.cilindrata = cilindrata;
         this.pilota = pilota;
+        this.cronometro = new Cronometro();
+        this.cronometro.setStartTime(null); //imposto il tempo di inizio a null
     }
 
     /* metodo che inizia il conteggio del cronometro */

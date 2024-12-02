@@ -1,5 +1,6 @@
 package gestGara;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.Duration;
@@ -60,6 +61,8 @@ public class Cronometro {
     /* metodo che calcola la distanza tra una misurazione
     * e l'altra */
     public Duration calculateTime(){
+        if(this.timingStatus()<=0)
+            return Duration.ZERO;
         return Duration.between(this.startTime, this.endTime);
     }
 
@@ -81,6 +84,7 @@ public class Cronometro {
             return "Auto in gara";
 
         /* altrimenti ritorno lo stato della gara */
-        return String.format("Gara terminata: %s", this.calculateTime().toString());
+        Duration duration = this.calculateTime();
+        return String.format("Gara terminata: %s", LocalTime.of(duration.toHoursPart(), duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart()).format(formatter));
     }
 }
