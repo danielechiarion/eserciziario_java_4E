@@ -19,7 +19,9 @@ public class Fraction {
         return this.denominator;
     }
 
-    public void setDenominator(int denominator) {
+    public void setDenominator(int denominator)throws Exception{
+        if(denominator == 0)
+            throw new Exception("Il denominatore non può essere 0");
         this.denominator = denominator;
     }
 
@@ -31,13 +33,10 @@ public class Fraction {
     * singoli valori di numeratore o denominatore,
     * controllando se il denominatore è diverso da 0. */
     public Fraction(int numerator, int denominator) throws Exception{
-        if(denominator == 0)
-            throw new Exception("Il denominatore non può essere 0");
-
         /* assegno numeratore e denominatore con
         * il valore assoluto */
-        this.numerator = Math.abs(numerator);
-        this.denominator = Math.abs(denominator);
+        this.setNumerator(Math.abs(numerator));
+        this.setDenominator(Math.abs(denominator)); //serve a controllare il valore del denominatore
 
         /* stabilisco il segno rispetto
         * ai valori di numeratore e denominatore */
@@ -68,8 +67,8 @@ public class Fraction {
 
         /* assegno numeratore e denominatore con
          * il valore assoluto */
-        this.numerator = Math.abs(numerator);
-        this.denominator = Math.abs(denominator);
+        this.setNumerator(Math.abs(numerator));
+        this.setDenominator(Math.abs(denominator));
 
         /* stabilisco il segno rispetto
          * ai valori di numeratore e denominatore */
@@ -77,6 +76,12 @@ public class Fraction {
             this.segno = 1;
         else
             this.segno = -1;
+    }
+
+    /* creazione di un costruttore il cui denominatore
+    * vale sempre 5 */
+    public Fraction(int numerator)throws Exception{
+        this(numerator, 5);
     }
 
     /* metodo che calcola il valore della frazione
