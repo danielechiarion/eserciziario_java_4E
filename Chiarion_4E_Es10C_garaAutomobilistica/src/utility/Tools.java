@@ -45,6 +45,14 @@ public class Tools {
         return scelta;
     }
 
+    public static void printArrayStringValues(String[] array)throws NullPointerException{
+        if(array == null)
+            throw new NullPointerException("Nessun valore disponibile");
+
+        for (String string : array)
+            System.out.println(string);
+    }
+
     public static void Wait(int x)
     {
         try{

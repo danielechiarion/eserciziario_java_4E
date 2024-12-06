@@ -5,6 +5,7 @@ public class Auto {
     public Pilota pilota;
     public String nomeScuderia;
     public int cilindrata;
+    public double punti;
     public Cronometro cronometro;
 
     /* metodi get e set */
@@ -39,6 +40,12 @@ public class Auto {
     public void setCronometro(Cronometro cronometro) {
         this.cronometro = cronometro;
     }
+    public double getPunti(){
+        return this.punti;
+    }
+    public void setPunti(double x){
+        this.punti = x;
+    }
 
     /* metodo costruttore */
     public Auto(String nomeScuderia, int cilindrata, Pilota pilota){
@@ -47,6 +54,7 @@ public class Auto {
         this.pilota = pilota;
         this.cronometro = new Cronometro();
         this.cronometro.setStartTime(null); //imposto il tempo di inizio a null
+        this.punti = 0;
     }
 
     /* metodo che inizia il conteggio del cronometro */
@@ -62,7 +70,7 @@ public class Auto {
     /* override del metodo toString */
     @Override
     public String toString(){
-        return String.format("%s\t%dcc\n%s\n%s", this.nomeScuderia, this.cilindrata, this.pilota.toString(), this.cronometro.toString());
+        return String.format("%s\t%dcc\n%s\n%s\n%.1f punti totali", this.nomeScuderia, this.cilindrata, this.pilota.toString(), this.cronometro.toString(), this.punti);
     }
 
     /* override del metodo equals */
