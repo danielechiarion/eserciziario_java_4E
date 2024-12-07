@@ -31,7 +31,10 @@ public class TableOrder {
      * Metodo che aggiunge un ordine alla lista
      * @param order ordine da aggiungere
      */
-    public void addOrder(SingleOrder order){}
+    public void addOrder(SingleOrder order){
+        /* l'ordine deve essere aggiunto senza evitare ripetizioni
+        * (due ordini singoli con stessa pietanza e stesso prezzo) */
+    }
 
     /**
      * Metodo che calcola il prezzo di tutte le pietanze consumate
@@ -48,5 +51,15 @@ public class TableOrder {
      */
     public String[] getBill(){
         return null;
+    }
+
+    /**
+     * Metodo che ritorna il formato stringa
+     * con tutte le singole ordinazioni effettuate
+     * @return stringa formattata con tutte le informazioni disponibili per il tavolo
+     */
+    @Override
+    public String toString(){
+        return "";
     }
 }
