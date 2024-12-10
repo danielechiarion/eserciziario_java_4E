@@ -18,7 +18,15 @@ public enum FoodType {
      * secondo l'ordine indicato
      */
     public static String[] toArrayString(){
-       return null;
+        /* creo gli array per il convertire
+        * gli enumeratori in stringhe */
+        FoodType[] foodTypeArray = FoodType.values();
+        String[] output = new String[foodTypeArray.length];
+
+        for(int i=0;i<foodTypeArray.length;i++)
+            output[i] = foodTypeArray[i].name();
+
+        return output;
     }
 
     /**
@@ -30,6 +38,14 @@ public enum FoodType {
      * @throws ArrayIndexOutOfBoundsException se viene inserita un indice errato
      */
     public static FoodType getFoodType(int num)throws ArrayIndexOutOfBoundsException{
-        return null;
-    }
+        /* genero l'array all'interno del quale ricercare l'elemento */
+        FoodType[] foodTypeArray = FoodType.values();
+
+        /* controllo se il numero inserito è valido */
+        if(num<0 || num>=foodTypeArray.length)
+            throw new ArrayIndexOutOfBoundsException("Indice inserito non valido");
+
+        /* altrimenti ritorno il valore */
+        return foodTypeArray[num];
+     }
 }

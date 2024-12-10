@@ -8,7 +8,7 @@ public class SingleOrder {
     /**
      * Variabile che memorizza l'ultimo ID dato ad un'ordinazione
      */
-    protected static int lastOrderID;
+    protected static int lastOrderID = 0;
 
     /* ATTRIBUTI */
     /**
@@ -29,10 +29,11 @@ public class SingleOrder {
      */
     protected int quantity;
     /**
-     * Booleano che indica se la pietanza è stata servita o meno
-     * (TRUE se è stata servita, false se non è stata servita)
+     * Numero del tavolo da cui
+     * è stata effettuata la singola
+     * ordinazione
      */
-    protected boolean served;
+    protected int tableNumber;
 
     /* GETTER E SETTER */
     /**
@@ -64,14 +65,6 @@ public class SingleOrder {
         return this.quantity;
     }
     /**
-     * Indica se il numero di pietanze indicato è stato servito
-     * o meno
-     * @return booleano con valore TRUE se è stato servito, FALSE se non è stato ancora servito
-     */
-    public boolean isServed() {
-        return this.served;
-    }
-    /**
      * Imposta un nuovo tipo di cibo per l'ordinazione effettyata
      * @param foodType tipologia di cibo (enumeratore) che si sostiuisce a quella corrente
      */
@@ -92,6 +85,13 @@ public class SingleOrder {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    /**
+     * Ritorna il numero del tavolo da cui è stata effettuata la singola ordinazione
+     * @return numero del tavolo
+     */
+    public int getTableNumber(){
+        return this.tableNumber;
+    }
 
     /* ALTRI METODI */
     /**
@@ -101,9 +101,12 @@ public class SingleOrder {
      * @param price prezzo della pietanza/bevanda scelta
      * @param quantity quantità della pietanza/bevanda scelta
      */
-    public SingleOrder(int id, FoodType foodType, double price, int quantity) {
-        /* quando la prenotazione viene creata
-        * il booleano served viene impostato automaticamente a false */
+    public SingleOrder(int id, FoodType foodType, double price, int quantity, int tableNumber) {
+        this.id = id;
+        this.foodType = foodType;
+        this.price = price;
+        this.quantity = quantity;
+        this.tableNumber = tableNumber;
     }
 
     /**
@@ -112,16 +115,9 @@ public class SingleOrder {
      * @return id della singola ordinazione
      */
     public static int calculateID(){
-        /* è importante aggiornare
-        * la variabile statica del lastID */
-        return 0;
+        lastOrderID += 1;
+        return lastOrderID;
     }
-
-    /**
-     * Metodo che cambia lo stato della singola ordinazione
-     * facendola diventare servita
-     */
-    public void hasBeenServed(){}
 
     /**
      * Metodo che calcola il conto da pagare per l'ordinazione,
@@ -129,8 +125,7 @@ public class SingleOrder {
      * @return prezzo della singola ordinazione
      */
     public double calculatePrice(){
-        /* controllo se la pietanza è stata servita */
-        return 0;
+        return this.quantity * this.price;
     }
 
     /**
@@ -138,10 +133,12 @@ public class SingleOrder {
      * sono simili in base al tipo di pietanza scelto
      * e al suo prezzo
      * @param order ordinazione da confrontare
-     * @return TREU se le ordinazioni sono simili, FALSE se non lo sono
+     * @return TRUE se le ordinazioni sono simili, FALSE se non lo sono
      */
     public boolean isSimilar(SingleOrder order){
-        return false;
+        /* confronto se il tipo di pietanza
+        * è lo stesso e ha lo stesso prezzo */
+        return this.foodType.equals(order.foodType) && this.price == order.price;
     }
 
     /**
@@ -151,7 +148,8 @@ public class SingleOrder {
      */
     @Override
     public String toString(){
-        return "";
+        return String.format("ID: %d\tTavolo:%d\tConsumazione: %s\tPrezzo cad1: %.2f€\tQuantità: %d\tTotale: %.2f€",
+                this.id,this.tableNumber,this.foodType.name(), this.price, this.quantity, this.calculatePrice());
     }
 
     /**
@@ -163,6 +161,15 @@ public class SingleOrder {
      */
     @Override
     public boolean equals(Object object){
-        return false;
+        /* controllo se l'oggetto è un'istanza
+        * della classe SingleOrder */
+        if(!(object instanceof SingleOrder))
+            return false;
+
+        /* altrimenti converto e controllo se gli
+        * id sono uguali */
+        SingleOrder otherOrder = (SingleOrder) object;
+
+        return this.id == otherOrder.id;
     }
 }

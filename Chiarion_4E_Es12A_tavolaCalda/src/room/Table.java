@@ -7,6 +7,17 @@ import java.util.Comparator;
 
 public class Table {
     private static int lastTableNumber; //memorizza l'ultimo numero assegnato ad un tavolo
+    /**
+     * Comparatore per i tavoli,
+     * che li confronta in base a quanto stabilito nel metodo
+     * compare della classe Table
+     */
+    public static Comparator<Table> tableComparator = new Comparator<Table>() {
+        @Override
+        public int compare(Table o1, Table o2) {
+            return o1.compare(o2);
+        }
+    };
 
     /* ATTRIBUTI */
     /**
@@ -66,9 +77,13 @@ public class Table {
      * @param numSeats numero di posti da impostare
      * @throws Exception se il numero di posti inseriti non è disponibile
      */
-    private void setOccupiedSeats(int numSeats)throws Exception{
+    public void setOccupiedSeats(int numSeats)throws Exception{
         /* qui verranno effettuati controlli
-        * se il numero di posti è effettivamente disponibile */
+         * se il numero di posti è effettivamente disponibile */
+        if(this.isTableBigEnough(numSeats))
+            throw new Exception("Numero di posti del tavolo insufficiente");
+
+        this.occupiedSeats = numSeats;
     }
 
     /* ALTRI METODI */
@@ -90,9 +105,10 @@ public class Table {
      * @param singleOrder oggetto ordine da inserire alla lista
      */
     public void addOrder(SingleOrder singleOrder){
-        /* questo metodo controlla se l'ordine del
-        * tavolo è stato creato,
-        * altrimenti istanzia nuovamente l'ordine del tavolo */
+        if(this.tableOrder == null)
+            this.tableOrder = new TableOrder(singleOrder);
+        else
+            this.tableOrder.addOrder(singleOrder);
     }
 
     /**
@@ -101,7 +117,9 @@ public class Table {
      */
     public void freeTable(){
         /* i dati da cancellare sono gli ordini al tavolo
-        * e il numero di persone che occupano il tavolo */
+         * e il numero di persone che occupano il tavolo */
+        this.occupiedSeats = 0;
+        this.tableOrder = null;
     }
 
     /**
@@ -109,6 +127,9 @@ public class Table {
      * @return TRUE se il tavolo è libero, FALSE se il tavolo è impegnato
      */
     public boolean isTableFree(){
+        if(this.occupiedSeats>0)
+            return true;
+
         return false;
     }
 
@@ -121,15 +142,11 @@ public class Table {
      * @return TRUE se il tavolo è adatto, FALSE se non è adatto
      */
     public boolean isTableBigEnough(int numberofPeople){
+        if(numberofPeople>0 && numberofPeople<=this.totalSeats)
+            return true;
+
         return false;
     }
-
-    /**
-     * Metodo che imposta l'ordinazione
-     * come ricevuta
-     * @param order ordinazione ricevuta
-     */
-    public void receivedOrder(SingleOrder order){}
 
     /**
      * Metodo che restituisce le informazioni relative al tavolo
@@ -138,12 +155,8 @@ public class Table {
      */
     @Override
     public String toString(){
-        /* i dati da inserire dovrebbero essere:
-        * - NUMERO TAVOLO
-        * - NUMERO POSTI DISPONIBILI
-        * - POSTI ATTUALMENTE OCCUPATI
-        * - EVENTUALI ORDINAZIONI EFFETTUATI */
-        return "";
+        return String.format("Tavolo numero: %d\tPosti totali: %d\tPosti occupati: %d\nORDINI EFFETTUATI\n%s",
+                this.tableNumber, this.totalSeats, this.occupiedSeats, this.tableOrder.toString());
     }
 
     /**
@@ -155,7 +168,15 @@ public class Table {
      */
     @Override
     public boolean equals(Object object){
-        return false;
+        /* controllo se l'oggetto è un'istanza
+        * della classe Table */
+        if(!(object instanceof Table))
+            return false;
+
+        /* faccio il cast dell'oggetto
+        * e controllo il numero del tavolo */
+        Table otherTable = (Table) object;
+        return this.tableNumber == otherTable.tableNumber;
     }
 
     /**
@@ -167,7 +188,14 @@ public class Table {
      * 1 se il numero tavolo di anotherTable viene prima di quello di questo tavolo
      */
     public int compare(Table anotherTable){
-        return 0;
+        /* confronto il valore del numero di tavolo
+        * per poter ordinarlo */
+        if(this.tableNumber > anotherTable.tableNumber)
+            return 1;
+        else if(this.tableNumber == anotherTable.tableNumber)
+            return 0;
+        else
+            return -1;
     }
 
     /**
@@ -176,10 +204,13 @@ public class Table {
      * @return JSONObject con le principali informazioni relative al tavolo
      */
     public JSONObject toJSON(){
-        /* i dati da salvare nel JSON sono:
-        * - numero del tavolo
-        * - posti disponibili */
-        return null;
+        JSONObject object = new JSONObject(); //creo oggetto
+
+        /* aggiungo attributi necessari */
+        object.put("tableNumber", this.tableNumber);
+        object.put("totalSeats", this.totalSeats);
+
+        return object;
     }
 
     /**
@@ -189,6 +220,12 @@ public class Table {
      * @return oggetto convertito nella classe Tavolo
      */
     public static Table parseJSON(JSONObject object){
-        return null;
+        int tableNumber, totalSeats;
+
+        /* leggo gli attributi dal JSONObject */
+        tableNumber = object.getInt("tableNumber");
+        totalSeats = object.getInt("totalSeats");
+
+        return new Table(tableNumber, totalSeats);
     }
 }
