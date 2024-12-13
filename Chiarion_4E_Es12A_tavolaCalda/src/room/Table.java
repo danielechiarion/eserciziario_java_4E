@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.util.Comparator;
 
 public class Table {
-    private static int lastTableNumber; //memorizza l'ultimo numero assegnato ad un tavolo
+    private static int lastTableNumber=0; //memorizza l'ultimo numero assegnato ad un tavolo
     /**
      * Comparatore per i tavoli,
      * che li confronta in base a quanto stabilito nel metodo
@@ -97,6 +97,11 @@ public class Table {
         this.tableNumber = tableNumber;
         this.totalSeats = totalSeats;
         this.occupiedSeats = 0;
+    }
+
+    public static int calculateID(){
+        lastTableNumber += 1;
+        return lastTableNumber;
     }
 
     /**
