@@ -79,4 +79,21 @@ public class FrontScreen {
 
         return new Auto(nomeScuderia, cilindrata, pilota);
     }
+
+    /* metodo per leggere una gara */
+    public static void leggiGara(ArrayList<Gara> listaGare, Scanner scanner)throws Exception{
+        /* dichiarazione variabili */
+        String nomeCircuito;
+
+        /* input dati */
+        System.out.println("Inserisci il nome del circuito");
+        nomeCircuito = scanner.nextLine();
+
+        /* creo la gara e verifico
+        * che non sia già stata creata */
+        Gara gara = new Gara(nomeCircuito);
+        if(listaGare.contains(gara))
+            throw new Exception("Gara già inserita");
+        listaGare.add(gara);
+    }
 }
