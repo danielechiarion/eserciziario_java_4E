@@ -46,6 +46,11 @@ public class Pilota {
 
     /* ritorna il formato stringa per il CSV */
     public String toCSV(){
-        return String.format("%s %s", this.cognome, this.nome);
+        return String.format("%s,%s", this.cognome, this.nome);
+    }
+
+    public Pilota fromCSV(String content){
+        String[] generalita = content.split(",");
+        return new Pilota(generalita[0], generalita[1], "");
     }
 }

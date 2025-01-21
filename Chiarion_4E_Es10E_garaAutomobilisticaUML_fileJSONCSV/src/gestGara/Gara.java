@@ -3,8 +3,9 @@ package gestGara;
 import tempo.*;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Objects;
+import java.io.*;
+import java.nio.file.*;
 
 public class Gara {
     private String nome;
@@ -15,13 +16,12 @@ public class Gara {
     private int numAutoGara;
 
     /* getter */
-
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getNazionalita() {
-        return nazionalita;
+        return this.nazionalita;
     }
 
     /* in questo caso il getter ritorna una copia della griglia */
@@ -127,5 +127,20 @@ public class Gara {
             text.append(classifica.get(i).toCSV()).append("\n");
 
         return text.toString(); //converto alla fine in stringa
+    }
+
+    /* legge la classifica da file json e ritorna tutta la classifica */
+    public void fromCSV(String content){
+        /* divido il contenuto in array di stringhe
+        * dividendo gli a capo */
+        String[] righe = content.split("\n");
+
+        /* pulisco la griglia e leggo tutto da csv */
+        this.griglia.clear();
+        for(int i=1;i<righe.length;i++){
+            //salta la prima riga che è l'intestazione
+            Scuderia scuderiaAttuale = Scuderia.fromCSV(righe[i]);
+            this.griglia.get(this.griglia.indexOf(scuderiaAttuale)).setTempoGiro(scuderiaAttuale.getTempoGiro());
+        }
     }
 }

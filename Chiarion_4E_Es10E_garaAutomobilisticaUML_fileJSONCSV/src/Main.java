@@ -24,6 +24,8 @@ public class Main {
                 "Concludi misurazione tempo",
                 "Dettagli gara in corso",
                 "Salva dati gara corrente CSV / JSON",
+                "Leggi classifica da CSV",
+                "Leggi gara da JSON",
                 "Cambia gara",
                 "Fine"
         };
@@ -106,8 +108,20 @@ public class Main {
                         System.out.println("Dati salvati con successo");
                         Wait(3);
                     }
-                    /* CAMBIO GARA */
+                    /* LEGGI DA CSV */
                     case 9 -> {
+                        listaGare.getLast().fromCSV(readFromFile(directoryPath+listaGare.getLast().getNome()+".csv"));
+                    }
+                    /* LEGGI DA FILE JSON */
+                    case 10 -> {
+                        System.out.println("Inserisci il nome del file da cui prendere con estensione");
+                        String path = keyboard.nextLine();
+                        Gara garaLetta = gsonFile.fromJson(readFromFile(path), Gara.class);
+                        listaGare.remove(garaLetta); //rimuove eventuali doppioni
+                        listaGare.add(garaLetta);
+                    }
+                    /* CAMBIO GARA */
+                    case 11 -> {
                         FrontScreen.leggiGara(listaGare, keyboard); //aggiungo la nuova gara
                     }
                     default -> {
@@ -137,5 +151,10 @@ public class Main {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    /* metodo per la lettura da file */
+    private static String readFromFile(String path)throws Exception{
+        return new String(Files.readAllBytes(Paths.get(path)));
     }
 }

@@ -1,5 +1,7 @@
 package utility;
 
+import java.io.*;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,6 +48,15 @@ public class Tools {
         return scelta;
     }
 
+    public static int menuOnlyData(String intestazione, String[] opzioni, Scanner keyboard){
+        String[] opzioniComplete = new String[opzioni.length+1];
+        opzioniComplete[0] = intestazione;
+        for (int i = 1; i < opzioniComplete.length; i++) {
+            opzioniComplete[i] = opzioni[i-1];
+        }
+        return menu(opzioniComplete, keyboard);
+    }
+
     public static void printArrayStringValues(ArrayList<?> lista)throws NullPointerException{
         if(lista.isEmpty())
             throw new NullPointerException("Nessun valore disponibile");
@@ -63,4 +74,40 @@ public class Tools {
             e.printStackTrace();
         }
     }
+
+    /* metodo che ritorna il contenuto dei file nella cartella corrente */
+    public static File currentFileDirectory(String nameDirectory){
+        //String UserDirectory = System.getProperty("user.dir"); //ritorna la directory di lavoro corrente del programma
+        String UserDirectory = nameDirectory;
+        return new File(UserDirectory);
+    }
+
+    public static String[] getFileList(String nameDirectory){
+        File dir = currentFileDirectory(nameDirectory);
+        return dir.list();
+    }
+
+    /* ritorna i file con solo l'estensione indicata */
+    public static String[] fileFilter(String[] fileList, String extensionFilter){
+        ArrayList<String> lista = new ArrayList<>();
+        for(String file : fileList){
+            if(file.endsWith(extensionFilter))
+                lista.add(file);
+        }
+        return lista.toArray(new String[lista.size()]);
+    }
+
+    /*private static String readFromFile(String path)throws Exception{
+        return new String(Files.readAllBytes(Paths.get(path)));
+    }*/
+
+    /*public static void main(String[] args) {
+        String[] file = fileFilter(getFileList("src/gestGara"), ".java");
+        int scelta = menuOnlyData("File disponibili", file, new Scanner(System.in));
+        try{
+            System.out.println(readFromFile("src/gestGara/"+file[scelta]));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }*/
 }

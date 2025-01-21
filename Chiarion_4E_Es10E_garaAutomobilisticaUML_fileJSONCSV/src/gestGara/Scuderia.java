@@ -75,4 +75,10 @@ public class Scuderia implements Comparable<Scuderia>,Cloneable {
     public String toCSV(){
         return String.format("%d,%s,%s,%d", this.numeroAuto,this.pilota.toCSV(), this.nome, this.tempoGiro);
     }
+
+    /* ritorna l'oggetto convertito da file CSV */
+    public static Scuderia fromCSV(String content){
+        String[] data = content.split(",");
+        return new Scuderia(data[3], null, Integer.parseInt(data[0]));
+    }
 }
