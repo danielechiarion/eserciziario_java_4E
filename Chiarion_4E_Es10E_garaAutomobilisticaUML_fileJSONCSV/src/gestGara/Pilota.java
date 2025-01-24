@@ -49,8 +49,7 @@ public class Pilota {
         return String.format("%s,%s", this.cognome, this.nome);
     }
 
-    public Pilota fromCSV(String content){
-        String[] generalita = content.split(",");
-        return new Pilota(generalita[0], generalita[1], "");
+    public static Pilota fromCSV(String name, String surname){
+        return new Pilota(name, surname, "");
     }
 }

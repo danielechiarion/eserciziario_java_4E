@@ -2,14 +2,18 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalTime;
+import java.lang.reflect.Type;
 
 import FrontEnd.*;
 import gestGara.*;
 import tempo.*;
 import static utility.Tools.*;
+import utility.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class Main {
     public static void main(String[] args) {
@@ -38,7 +42,7 @@ public class Main {
         ArrayList<Gara> listaGare = new ArrayList<>();
         /* istanza degli oggetti da utilizzare */
         Scanner keyboard = new Scanner(System.in);
-        Gson gsonFile = new Gson(); //nuovo oggetto GSON da utilizzare per il salvataggio su file
+        Gson gsonFile = new GsonBuilder().registerTypeAdapter(LocalTime.class, new LocalTimeAdapter()).create(); //nuovo oggetto GSON da utilizzare per il salvataggio su file
         /* costanti per il salvataggio file */
         final String directoryPath = "data/";
 
@@ -104,7 +108,7 @@ public class Main {
                     /* SALVATAGGIO DATI GARA */
                     case 8 -> {
                         writeOnFile(directoryPath+listaGare.getLast().getNome()+".csv", listaGare.getLast().toCSV());
-                        writeOnFile(directoryPath+listaGare.getLast().getNome()+".json", gsonFile.toJson(listaGare.getLast().getClassifica()));
+                        writeOnFile(directoryPath+listaGare.getLast().getNome()+".json", gsonFile.toJson(listaGare.getLast()));
                         System.out.println("Dati salvati con successo");
                         Wait(3);
                     }
@@ -116,7 +120,7 @@ public class Main {
                     case 10 -> {
                         System.out.println("Inserisci il nome del file da cui prendere con estensione");
                         String path = keyboard.nextLine();
-                        Gara garaLetta = gsonFile.fromJson(readFromFile(path), Gara.class);
+                        Gara garaLetta = gsonFile.fromJson(readFromFile(path), Gara.class); //il contenuto mi viene salvato sempre come array, quindi devo utilizzare una lista
                         listaGare.remove(garaLetta); //rimuove eventuali doppioni
                         listaGare.add(garaLetta);
                     }
@@ -155,6 +159,6 @@ public class Main {
 
     /* metodo per la lettura da file */
     private static String readFromFile(String path)throws Exception{
-        return new String(Files.readAllBytes(Paths.get(path)));
+        return new String(Files.readAllBytes(Paths.get(path))).replace("\r", ""); //rimpiazzo il \r che può dare problemi nella lettura di int
     }
 }

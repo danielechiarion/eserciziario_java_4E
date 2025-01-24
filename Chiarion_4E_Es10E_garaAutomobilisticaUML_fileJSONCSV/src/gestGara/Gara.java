@@ -140,7 +140,7 @@ public class Gara {
         for(int i=1;i<righe.length;i++){
             //salta la prima riga che è l'intestazione
             Scuderia scuderiaAttuale = Scuderia.fromCSV(righe[i]);
-            this.griglia.get(this.griglia.indexOf(scuderiaAttuale)).setTempoGiro(scuderiaAttuale.getTempoGiro());
+            this.griglia.add(scuderiaAttuale);
         }
     }
 }

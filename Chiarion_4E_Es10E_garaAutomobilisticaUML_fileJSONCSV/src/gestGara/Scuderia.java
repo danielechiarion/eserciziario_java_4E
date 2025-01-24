@@ -14,6 +14,13 @@ public class Scuderia implements Comparable<Scuderia>,Cloneable {
         this.numeroAuto = numeroAuto;
         this.tempoGiro = -1;
     }
+    /* altra variante della scuderia dove metto il tempo su giro */
+    public Scuderia(String nome, Pilota pilota, int numeroAuto, int tempoGiro) {
+        this.nome = nome;
+        this.pilota = pilota;
+        this.numeroAuto = numeroAuto;
+        this.tempoGiro = tempoGiro;
+    }
 
     public String getNome() {
         return this.nome;
@@ -79,6 +86,6 @@ public class Scuderia implements Comparable<Scuderia>,Cloneable {
     /* ritorna l'oggetto convertito da file CSV */
     public static Scuderia fromCSV(String content){
         String[] data = content.split(",");
-        return new Scuderia(data[3], null, Integer.parseInt(data[0]));
+        return new Scuderia(data[3], Pilota.fromCSV(data[2], data[1]), Integer.parseInt(data[0]), Integer.parseInt(data[4]));
     }
 }
