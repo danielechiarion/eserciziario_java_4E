@@ -32,4 +32,13 @@ public class Istituto {
     public void stampaDipendenti(){
         this.listaDipendenti.forEach(x -> System.out.println(x.toString()));
     }
+
+    public String chiSei(Dipendente d){
+        if(d instanceof Impiegato)
+            return "Sono un impiegato";
+        if(d instanceof Docente)
+            return "Sono un docente";
+
+        return "Sono un dipendente";
+    }
 }
