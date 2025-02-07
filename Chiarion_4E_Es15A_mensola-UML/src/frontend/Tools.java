@@ -67,14 +67,13 @@ public class Tools {
         int nPagine = Integer.parseInt(tastiera.nextLine());
 
         System.out.println("Inserisci il tipo del libro: ");
-//         Menu(sceltaGenere, tastiera);
+        //Menu(sceltaGenere, tastiera);
         Genere tipo = tipoGenere[Menu(sceltaGenere, tastiera) - 1]; // visto che Menu parte da indice 1
 
 
-//        Libro l = new Libro(autore, titolo, nPagine, tipo);
-//        return l;
+        //Libro l = new Libro(autore, titolo, nPagine, tipo);
+        //return l;
         return new Libro(autore, titolo, nPagine, tipo);
-
     }
 
     public static void visualizzaMensola(ArrayList<Libro> volumi) {

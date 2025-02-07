@@ -41,7 +41,7 @@ public class Mensola {
     /* metodo che aggiunnge il libro alla mensola */
     public void addBook(Libro libro)throws Exception{
         /* prima di inserirlo controllo
-        * se c'è spazio disponibile */
+         * se c'è spazio disponibile */
         if(!this.checkSpace())
             throw new Exception("Mensola piena");
 
@@ -54,7 +54,7 @@ public class Mensola {
     }
 
     /* metodo che aggiunge un libro
-    * in una determinata posizione */
+     * in una determinata posizione */
     public void setInto(Libro libro, int posizione)throws IndexOutOfBoundsException{
         if(posizione<0 || posizione > this.mensola.size())
             throw new IndexOutOfBoundsException("Posizione non valida");
@@ -63,7 +63,7 @@ public class Mensola {
     }
 
     /* metodo che indica se contiene
-    * il libro all'interno della mensola */
+     * il libro all'interno della mensola */
     public boolean containsBook(Libro libro){
         return this.mensola.contains(libro);
     }
@@ -74,8 +74,8 @@ public class Mensola {
     }
 
     /* metodo che restituisce l'indice del libro
-    * indicato nella mensola, -1 se il libro
-    * non è presente */
+     * indicato nella mensola, -1 se il libro
+     * non è presente */
     public int findLibro(Libro libro){
         return this.mensola.indexOf(libro);
     }
