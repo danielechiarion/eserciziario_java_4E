@@ -6,15 +6,13 @@ public class Libro implements Cloneable{
     private String titolo;
     private String autore;
     private int nPagine;
-    private Genere tipo;
 
     private static final double COSTOPAGINE = 0.05;
 
-    public Libro(String titolo, String autore, int nPagine, Genere tipo){
+    public Libro(String titolo, String autore, int nPagine){
         this.titolo = titolo;
         this.autore = autore;
         this.nPagine = nPagine;
-        this.tipo = tipo;
     }
 
     public String getTitolo() {
@@ -41,22 +39,14 @@ public class Libro implements Cloneable{
         this.nPagine = nPagine;
     }
 
-    public Genere getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Genere tipo) {
-        this.tipo = tipo;
-    }
-
     public double getPrezzo(){
         return this.nPagine * COSTOPAGINE;
     }
 
     @Override
     public String toString(){
-        return String.format("titolo: %s; autore: %s; numero pagine: %d; tipo: %s, Prezzo Libro: %.2f€",
-                this.titolo, this.autore, this.nPagine, this.tipo);
+        return String.format("titolo: %s; autore: %s; numero pagine: %d; Prezzo Libro: %.2f€",
+                this.titolo, this.autore, this.nPagine);
     }
 
     @Override
@@ -68,6 +58,6 @@ public class Libro implements Cloneable{
 
     @Override
     public Libro clone(){
-        return new Libro(this.titolo, this.autore, this.nPagine, this.tipo);
+        return new Libro(this.titolo, this.autore, this.nPagine);
     }
 }

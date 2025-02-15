@@ -1,7 +1,6 @@
 package frontend;
 
-import backend.Libro;
-import backend.Genere;
+import backend.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -54,10 +53,15 @@ public class Tools {
         return scelta;
     }
 
-    public static Libro leggiLibro(Scanner tastiera, boolean soluzioni) {
-        Genere[] tipoGenere = Genere.values();
-        String[] sceltaGenere = {"GENERE", "ROMANZO", "MANUALE", "THRILLER", "GENERICO"};
+    public static Libro leggiLibro(Scanner tastiera) {
+        String[] opzioniLibro = {
+                "LIBRI DA INSERIRE",
+                "Romanzo",
+                "Manuale",
+                "Triller"
+        };
 
+        int sceltaLibro = Menu(opzioniLibro, tastiera);
 
         System.out.print("Inserisci l'autore del libro: ");
         String autore = tastiera.nextLine();
@@ -66,14 +70,17 @@ public class Tools {
         System.out.print("Inserisci il numero di pagine del libro: ");
         int nPagine = Integer.parseInt(tastiera.nextLine());
 
-        System.out.println("Inserisci il tipo del libro: ");
-        //Menu(sceltaGenere, tastiera);
-        Genere tipo = tipoGenere[Menu(sceltaGenere, tastiera) - 1]; // visto che Menu parte da indice 1
-
-
-        //Libro l = new Libro(autore, titolo, nPagine, tipo);
-        //return l;
-        return new Libro(autore, titolo, nPagine, tipo);
+        if(sceltaLibro == 1){
+            System.out.println("Inserisci il genere letterario del romanzo");
+            String genereLetterario = tastiera.nextLine();
+            return new Romanzo(titolo, autore, nPagine, genereLetterario);
+        }else if(sceltaLibro == 2){
+            Livello livello = Livello.getLivello(Menu(Livello.getLivelliArrayString(), tastiera)-1);
+            return new Manuale(titolo, autore, nPagine, livello);
+        }else{
+            Genere genere = Genere.getGenere(Menu(Genere.getGeneriArrayString(), tastiera)-1);
+            return new Thriller(titolo, autore, nPagine, genere);
+        }
     }
 
     public static void visualizzaMensola(ArrayList<Libro> volumi) {
