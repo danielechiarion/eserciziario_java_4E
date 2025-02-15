@@ -45,7 +45,7 @@ public class Dipendente implements Cloneable{
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Dipendente that)) return false;
-        return Objects.equals(nominativo, that.nominativo) && Objects.equals(ruolo, that.ruolo);
+        return this.nominativo.equals(that.nominativo) && this.ruolo.equals(that.ruolo);
     }
 
     @Override

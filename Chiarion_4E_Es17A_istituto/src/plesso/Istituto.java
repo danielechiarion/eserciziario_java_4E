@@ -34,11 +34,21 @@ public class Istituto {
     }
 
     public String chiSei(Dipendente d){
+        //System.out.println(d.getClass().getName());
         if(d instanceof Impiegato)
             return "Sono un impiegato";
         if(d instanceof Docente)
             return "Sono un docente";
 
         return "Sono un dipendente";
+    }
+
+    public String[] tipoDipendenti(){
+        String[] output = new String[this.listaDipendenti.size()];
+
+        for(int i = 0; i < this.listaDipendenti.size(); i++)
+            output[i] = this.listaDipendenti.get(i).getClass().getSimpleName() + "\t"+this.listaDipendenti.get(i).getNominativo();
+
+        return output;
     }
 }

@@ -8,7 +8,7 @@ public class Main {
         Docente docente = new Docente("Laghi", 'X', "Via sociale", "sistemi");
         //System.out.println(docente.toString());
         Impiegato impiegato = new Impiegato("Bego", 'F', "Via spello", "Contabilità");
-        //System.out.println(impiegato.toString());
+        //System.out.println(impiegato.toString());0
 
         /* posso assegnare ad una classe primitiva una classe derivata
         * Non posso mai fare il contrario */
@@ -22,7 +22,9 @@ public class Main {
         istituto.addDipendente(docente);
         istituto.addDipendente(impiegato);
         istituto.stampaDipendenti();
+        istituto.chiSei(docente);
 
-        
+        for(String string : istituto.tipoDipendenti())
+            System.out.println(string);
     }
 }
