@@ -84,8 +84,8 @@ public class Tools {
     }
 
     public static void visualizzaMensola(ArrayList<Libro> volumi) {
+        clrScr();
         for (Libro l : volumi) {
-            clrScr();
             System.out.println(l.toString());
         }
     }

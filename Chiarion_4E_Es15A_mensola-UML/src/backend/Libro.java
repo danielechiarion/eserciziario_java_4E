@@ -46,7 +46,7 @@ public class Libro implements Cloneable{
     @Override
     public String toString(){
         return String.format("titolo: %s; autore: %s; numero pagine: %d; Prezzo Libro: %.2f€",
-                this.titolo, this.autore, this.nPagine);
+                this.titolo, this.autore, this.nPagine, this.getPrezzo());
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Libro implements Cloneable{
     }
 
     @Override
-    public Libro clone(){
-        return new Libro(this.titolo, this.autore, this.nPagine);
+    public Libro clone()throws CloneNotSupportedException{
+        return (Libro)super.clone();
     }
 }

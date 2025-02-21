@@ -22,8 +22,11 @@ public class Mensola {
     /* metodo che ritorna una copia della mensola */
     public ArrayList<Libro> getVolumi() {
         ArrayList<Libro> copiaMensola = new ArrayList<>();
-        for(Libro libro : this.mensola)
-            copiaMensola.add(libro.clone());
+        for(Libro libro : this.mensola){
+            try{
+                copiaMensola.add(libro.clone());
+            }catch(CloneNotSupportedException e){}
+        }
 
         return copiaMensola; //ritorno la copia della mensola
     }
