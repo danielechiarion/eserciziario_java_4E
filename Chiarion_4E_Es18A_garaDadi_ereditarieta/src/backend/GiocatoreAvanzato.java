@@ -2,10 +2,12 @@ package backend;
 
 public class GiocatoreAvanzato extends Giocatore implements Comparable<Giocatore> {
     private int puntiBonus;
+    private int vittorieConsecutive;
 
     public GiocatoreAvanzato(String nome) {
         super(nome);
         this.puntiBonus = 0;
+        this.vittorieConsecutive = 0;
     }
 
     public int getPuntiBonus() {
@@ -19,6 +21,18 @@ public class GiocatoreAvanzato extends Giocatore implements Comparable<Giocatore
     public void togliPuntoBonus(){
         if(this.puntiBonus != 0)
             this.puntiBonus--;
+    }
+
+    public void aggiungiVittorieConsecutive() {
+        this.vittorieConsecutive++;
+    }
+
+    public void resetVittorieConsecutive() {
+        this.vittorieConsecutive = 0;
+    }
+
+    public boolean hasVittorieConsecutive(){
+        return this.vittorieConsecutive!=0 && this.vittorieConsecutive%3==0;
     }
 
     @Override

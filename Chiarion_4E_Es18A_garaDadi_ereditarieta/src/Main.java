@@ -10,9 +10,9 @@ public class Main {
         String repeat;
 
         //Gara gara = leggiGara(scanner); //lettura della gara
-        GaraAvanzata gara = null;
+        Gara gara = null;
         try{
-            gara = new GaraAvanzata(10, 6, new GiocatoreAvanzato("mario"), new GiocatoreAvanzato("luigi"));
+            gara = leggiGara(scanner);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -38,11 +38,16 @@ public class Main {
         }while(repeat.equals("SI"));
     }
 
-    private static Gara leggiGara(Scanner scanner){
+    private static Gara leggiGara(Scanner scanner)throws Exception{
         /* dichiarazione variabili */
         String nome1, nome2;
         int numRound = 0, numFacce=0;
         boolean check;
+        int option;
+
+        /* chiedo tipo di partita */
+        System.out.println("Inserisci il tipo di gara\n1 - base\n2 - avanzata");
+        option = Integer.parseInt(scanner.nextLine());
 
         /* richiesta inserimento dati */
         System.out.println("Inserisci nome primo giocatore: ");
@@ -88,6 +93,9 @@ public class Main {
             }
         }while(check);
 
-        return new Gara(numRound, numFacce, new Giocatore(nome1), new Giocatore(nome2));
+        if(option == 1)
+            return new Gara(numRound, numFacce, new Giocatore(nome1), new Giocatore(nome2));
+        else
+            return new GaraAvanzata(numRound, numFacce, new GiocatoreAvanzato(nome1), new GiocatoreAvanzato(nome2));
     }
 }

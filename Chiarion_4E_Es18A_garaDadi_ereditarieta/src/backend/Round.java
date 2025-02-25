@@ -34,6 +34,7 @@ public class Round {
             this.risultato = this.giocatore1.getNome();
         }
         else if(this.lancio1<this.lancio2){
+            this.giocatore2.incrementaVittoria();
             this.risultato = this.giocatore2.getNome();
         }else{
             this.risultato = "PAREGGIO";
