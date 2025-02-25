@@ -76,7 +76,7 @@ public class Main {
             try{
                 System.out.println("Inserisci il numero di facce per dado");
                 numFacce = Integer.parseInt(scanner.nextLine());
-                if(numRound<=0)
+                if(numFacce<=0)
                     throw new Exception("Non puoi inserire un numero di facce negativo o nullo");
             }catch(NumberFormatException e){
                 System.out.println("ERRORE DI DOMINIO");
