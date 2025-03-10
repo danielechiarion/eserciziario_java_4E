@@ -13,29 +13,16 @@ public class Main {
         Gara gara = null;
         try{
             gara = leggiGara(scanner);
+            do {
+                giocaPartita(gara, scanner);
+                System.out.println("Digita SI per resettare il gioco, qualsiasi altro input per chiudere il programma");
+                repeat = scanner.nextLine();
+                if(repeat.equals("SI"))
+                    gara.resetGame();
+            }while(repeat.equals("SI"));
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        do {
-            for(int i=0;i<gara.getNumRound();i++){
-                System.out.println("Digita INVIO per far partire il round");
-                scanner.nextLine();
-                try{
-                    gara.round();
-                    System.out.println(gara.getRoundWinner());
-                    System.out.println(gara.statusGara());
-                    if(gara.fineGara()){
-                        System.out.println(gara.gameWin());
-                    }
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
-                }
-            }
-            System.out.println("Digita SI per resettare il gioco, qualsiasi altro input per chiudere il programma");
-            repeat = scanner.nextLine();
-            if(repeat.equals("SI"))
-                gara.resetGame();
-        }while(repeat.equals("SI"));
     }
 
     private static Gara leggiGara(Scanner scanner)throws Exception{
@@ -97,5 +84,28 @@ public class Main {
             return new Gara(numRound, numFacce, new Giocatore(nome1), new Giocatore(nome2));
         else
             return new GaraAvanzata(numRound, numFacce, new GiocatoreAvanzato(nome1), new GiocatoreAvanzato(nome2));
+    }
+
+    /* metodo per il funzionamento di una partita */
+    public static void giocaPartita(Gara garaBase, Scanner scanner){
+        for(int i=0;i<garaBase.getNumRound();i++){
+            System.out.println("Digita INVIO per far partire il round");
+            scanner.nextLine();
+            try{
+                garaBase.round();
+                System.out.println(garaBase.getRoundWinner());
+                System.out.println(garaBase.statusGara());
+                if(garaBase.fineGara()){
+                    System.out.println(garaBase.gameWin());
+                }
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /* metodo per giocare la gara */
+    public static void giocaPartita(GaraAvanzata garaAvanzata, Scanner scanner){
+        giocaPartita((Gara)garaAvanzata, scanner); //il metodo funziona anche con una gara avanzata
     }
 }
