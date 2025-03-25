@@ -1,7 +1,5 @@
 package backend;
 
-import java.util.Objects;
-
 public abstract class ProdottoElettronico implements Cloneable{
     protected String codiceProdotto;
     protected double prezzo;

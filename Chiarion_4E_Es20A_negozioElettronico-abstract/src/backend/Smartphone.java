@@ -36,6 +36,6 @@ public class Smartphone extends ProdottoElettronico{
     /* override del metodo toString */
     @Override
     public String toString(){
-        return String.format("Smartphone: %s\tModello: %s\tMemoria: %dGB", super.toString(), this.modello, this.memoria);
+        return String.format("Smartphone: %s\nModello: %s\tMemoria: %dGB", super.toString(), this.modello, this.memoria);
     }
 }
