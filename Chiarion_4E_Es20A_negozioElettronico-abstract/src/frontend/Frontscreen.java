@@ -122,11 +122,11 @@ public class Frontscreen {
         ProdottoElettronico prodottoInput = inputProdottoRicerca(scanner);
 
         /* se non è presente il prodotto lancio un'eccezione */
-        if (negozio.prodottoExists(prodottoInput))
+        if (!negozio.prodottoExists(prodottoInput))
             throw new Exception("Prodotto non trovato");
 
         int index = negozio.indexProdotto(prodottoInput); //salvo l'indice perchè poi lo ritorno
-        System.out.println(negozio.getNomeNegozio().toString());
+        System.out.println(negozio.getProdotto(index).toString());
 
         return index;
     }
