@@ -2,11 +2,14 @@ package veicoli;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
+import java.util.Objects;
 
-public abstract class Auto implements Cloneable{
+public abstract class Auto implements Cloneable, Comparable<Auto> {
     /* dichiarazione variabile per conteggiare l'ID */
     private static int IDcounter;
 
+    /* ATTRIBUTI */
     protected int id;
     protected String marca;
     protected String modello;
@@ -24,6 +27,14 @@ public abstract class Auto implements Cloneable{
 
     public Auto(String marca, String modello, double prezzo, int annoImmatricolazione)throws Exception {
         this(marca, modello, prezzo, annoImmatricolazione, calculateID());
+    }
+
+    protected Auto(String marca, String modello, double prezzo, int annoImmatricolazione, int id, boolean terminator){
+        this.marca = marca;
+        this.modello = modello;
+        this.prezzo = prezzo;
+        this.immatricolazione = LocalDate.of(1,1,annoImmatricolazione);
+        this.id = id;
     }
 
     /* GETTER E SETTER */
@@ -87,4 +98,32 @@ public abstract class Auto implements Cloneable{
     }
 
     public abstract String mostraDettagli();
+
+    /* equals basato sulla marca dell'auto
+    * o sull'id in base all'inserimento effettuato */
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Auto auto)) return false;
+        if(auto.marca.isBlank())
+            return this.marca.equals(auto.marca);
+        else
+            return this.id == auto.id;
+    }
+
+    @Override
+    public Auto clone(){
+        try{
+            return (Auto) super.clone();
+        }catch(CloneNotSupportedException e) {
+            return null;
+        }
+    }
+
+    /* compareTo dove si confrontano
+    * le auto in base alla data di immatricolazione */
+    @Override
+    public int compareTo(Auto other){
+        return this.immatricolazione.compareTo(other.immatricolazione);
+    }
 }
