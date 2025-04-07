@@ -6,8 +6,12 @@ public class AutoRicerca extends Auto{
         super("", "", 0.0, annoImmatricolazione, -1, false);
     }
 
+    public AutoRicerca(int id, boolean terminator){
+        super("", "", 0.0, 12, id, false);
+    }
+
     public AutoRicerca(String marca){
-        super(marca, "", 0.0, -1, -2, false);
+        super(marca, "", 0.0, 12, -2, false);
     }
 
     @Override

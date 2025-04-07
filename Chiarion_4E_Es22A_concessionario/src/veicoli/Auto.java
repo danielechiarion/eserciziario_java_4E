@@ -19,6 +19,7 @@ public abstract class Auto implements Cloneable, Comparable<Auto> {
     /* COSTRUTTORI */
     public Auto(String marca, String modello, double prezzo, int annoImmatricolazione, int id)throws Exception {
         this.setMarca(marca);
+        this.setModello(modello);
         this.setPrezzo(prezzo);
         this.setId(id);
         this.setImmatricolazione(annoImmatricolazione);
@@ -33,7 +34,7 @@ public abstract class Auto implements Cloneable, Comparable<Auto> {
         this.marca = marca;
         this.modello = modello;
         this.prezzo = prezzo;
-        this.immatricolazione = LocalDate.of(1,1,annoImmatricolazione);
+        this.immatricolazione = LocalDate.of(annoImmatricolazione,1,1);
         this.id = id;
     }
 
@@ -105,10 +106,10 @@ public abstract class Auto implements Cloneable, Comparable<Auto> {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof Auto auto)) return false;
-        if(auto.marca.isBlank())
-            return this.marca.equals(auto.marca);
-        else
+        if(auto.id>0)
             return this.id == auto.id;
+        else
+            return this.marca.equals(auto.marca);
     }
 
     @Override

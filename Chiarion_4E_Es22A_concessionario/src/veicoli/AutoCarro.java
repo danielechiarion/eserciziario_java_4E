@@ -28,7 +28,7 @@ public class AutoCarro extends Auto{
     /* ALTRI METODI */
     @Override
     public String mostraDettagli(){
-        return String.format("AUTOCARRO: %s %s - %d\t%.2f€\tTara: %.2fq",
-                this.marca, this.modello, this.immatricolazione.getYear(), this.prezzo, this.tara);
+        return String.format("AUTOCARRO %04d: %s %s - %d\t%.2f€\tTara: %.2fq",
+                this.id, this.marca, this.modello, this.immatricolazione.getYear(), this.prezzo, this.tara);
     }
 }

@@ -40,7 +40,7 @@ public class AutoNuova extends Auto{
     /* ALTRI METODI */
     @Override
     public String mostraDettagli(){
-        return String.format("AUTO: %s %s - %d\t%.2f€\t%s - %dcv",
-                this.marca, this.modello, this.immatricolazione.getYear(), this.prezzo, this.alimentazione, this.cavalli);
+        return String.format("AUTO %04d: %s %s - %d\t%.2f€\t%s - %dcv",
+                this.id, this.marca, this.modello, this.immatricolazione.getYear(), this.prezzo, this.alimentazione, this.cavalli);
     }
 }

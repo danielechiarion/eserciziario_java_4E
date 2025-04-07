@@ -40,7 +40,7 @@ public class Concessionario {
         ArrayList<Auto> risultato = new ArrayList<>();
         AutoRicerca autoRicerca = new AutoRicerca(marca);
         for(Auto autoCorrente : this.showRoom){
-            if(autoRicerca.equals(autoCorrente))
+            if(autoCorrente.equals(autoRicerca))
                 risultato.add(autoCorrente.clone());
         }
 
@@ -56,5 +56,26 @@ public class Concessionario {
         }
 
         return risultato;
+    }
+
+    public void aggiungiAuto(Auto auto)throws Exception{
+        if(this.showRoom.contains(auto))
+            throw new Exception("Auto già inserita");
+
+        this.showRoom.add(auto);
+    }
+
+    public void rimuoviAuto(Auto auto)throws Exception{
+        if(!this.showRoom.contains(auto))
+            throw new Exception("Auto non trovata");
+
+        this.showRoom.remove(auto);
+    }
+
+    public void cambiaAuto(int index, Auto auto)throws Exception {
+        if (index < 0)
+            throw new Exception("Auto non trovata");
+
+        this.showRoom.set(index, auto);
     }
 }
