@@ -31,6 +31,20 @@ public class ParkingUncovered {
     }
 
     /**
+     * Method that returns the numbers the clone
+     * of the running parking lot
+     * @return arraylist of cars which is a clone of the original one
+     */
+    public ArrayList<Car> getLot(){
+        ArrayList<Car> clone = new ArrayList<>();
+
+        for(Car currentCar : this.lot)
+            clone.add(currentCar.clone());
+
+        return clone;
+    }
+
+    /**
      * Return the number of maximum spaces
      *
      * @return maximum spaces available

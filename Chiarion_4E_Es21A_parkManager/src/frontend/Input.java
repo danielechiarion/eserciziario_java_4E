@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 import vehicle.*;
 
+/**
+ * Method that manages the most used methods to
+ * get objects by input
+ */
 public class Input {
     /**
      * Method that returns an integer input,
@@ -129,12 +133,44 @@ public class Input {
     }
 
 
-    public static Car readCar(Scanner scanner, boolean forceInput){
+    /**
+     * Method that reads a car by input
+     * and returns it.
+     * The method supports an eventual research mode,
+     * where you don't need to give all the attributes
+     * @param scanner scanner for the input
+     * @param forceInput TRUE if all data are required
+     * @return new Car
+     * @throws Exception if the attributes given by the user are not valid
+     */
+    public static Car readCar(Scanner scanner, boolean forceInput)throws Exception{
         /* variables required for the input */
         boolean gpl, reserved, vip;
         double value, power;
         int booleanChoice;
 
-        /*  */
+        value = safeDoubleInput("Inserisci il valore dell'auto in €: ", scanner, forceInput);
+        power = safeDoubleInput("Inserisci la potenza dell'auto in KW: ", scanner, forceInput);
+        /* choose if the car has a gpl engine */
+        booleanChoice = twoOptionChoice("GPL", "Altra alimentazione", scanner);
+        if(booleanChoice == 1)
+            gpl = true;
+        else
+            gpl = false;
+        /* choose if the car is a VIP one */
+        booleanChoice = twoOptionChoice("Auto VIP", "Auto normale", scanner);
+        if(booleanChoice == 1)
+            vip = true;
+        else
+            vip = false;
+        /* choose if the car has a reserved
+        * space */
+        booleanChoice = twoOptionChoice("Posto riservato", "Posto libero", scanner);
+        if(booleanChoice == 1)
+            reserved = true;
+        else
+            reserved = false;
+
+        return new Car(vip, gpl, value, power, reserved);
     }
 }

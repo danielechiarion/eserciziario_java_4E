@@ -2,6 +2,9 @@ package parking;
 
 import vehicle.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Class that manages a covered parking
  * for the most important cars of the group
@@ -43,6 +46,20 @@ public class ParkingCovered {
     }
 
     /**
+     * Method that returns the numbers the clone
+     * of the running parking lot
+     * @return arraylist of cars which is a clone of the original one
+     */
+    public ArrayList<Car> getLot(){
+        ArrayList<Car> clone = new ArrayList<>();
+
+        for(int i=0;i<this.indexLot;i++)
+            clone.add(this.lot[i].clone());
+
+        return clone;
+    }
+
+    /**
      * Method that returns if the car is available
      * based on his characteristics.
      *
@@ -52,6 +69,8 @@ public class ParkingCovered {
     public boolean hasCarSpaceAvailable(Car car) {
         if (car.isGpl())
             return false;
+        if (this.indexLot < this.lot.length)
+            return true;
 
         for (Car currentCar : this.lot) {
             if (car.compareTo(currentCar) > 0)

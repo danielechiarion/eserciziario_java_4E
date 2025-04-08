@@ -2,6 +2,8 @@ package parking;
 
 import vehicle.*;
 
+import java.util.ArrayList;
+
 /**
  * Class that manages the whole
  * parking lot system,
@@ -49,6 +51,22 @@ public class ParkingManager {
         this.parkingCovered = parkingCovered;
         this.parkingUncovered = parkingUncovered;
         this.remainingReservation = remainingReservation;
+    }
+
+    /**
+     * Method that returns the covered parking lot
+     * @return clone of the covered parking lot
+     */
+    public ArrayList<Car> getCoveredParkingLot(){
+        return this.parkingCovered.getLot();
+    }
+
+    /**
+     * Method that returns the uncovered parking lot
+     * @return clone of the uncovered parking lot
+     */
+    public ArrayList<Car> getUncoveredParkingLot(){
+        return this.parkingUncovered.getLot();
     }
 
     /* method that checks if there are spaces available
