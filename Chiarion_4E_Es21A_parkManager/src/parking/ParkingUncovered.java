@@ -4,6 +4,10 @@ import vehicle.Car;
 
 import java.util.ArrayList;
 
+/**
+ * Class that manages all the cars that are
+ * not in the covered parking
+ */
 public class ParkingUncovered {
     /**
      * Maximum number of spaces available

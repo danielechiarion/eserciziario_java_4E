@@ -2,6 +2,11 @@ package parking;
 
 import vehicle.*;
 
+/**
+ * Class that manages the whole
+ * parking lot system,
+ * including VIP cars and reservations
+ */
 public class ParkingManager {
     /**
      * Covered part of the parking lot
@@ -69,7 +74,7 @@ public class ParkingManager {
             this.parkingUncovered.addCar(car);
         }
 
-        if (car.isReserved())
+        if (carToMove != null && carToMove.isReserved())
             this.remainingReservation--;
     }
 

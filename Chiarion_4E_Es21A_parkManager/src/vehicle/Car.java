@@ -178,6 +178,7 @@ public class Car implements Cloneable, Comparable<Car> {
     }
 
     /* OTHER METHODS */
+    @Override
     public Car clone() {
         try {
             return new Car(this.vip, this.gpl, this.value, this.power, this.reserved);
@@ -197,6 +198,7 @@ public class Car implements Cloneable, Comparable<Car> {
      * @param another the object to be compared.
      * @return -1 if this object comes before the first, 0 if they are equal, 1 if this object comes after the other one
      */
+    @Override
     public int compareTo(Car another) {
         if (this.vip != another.vip && this.vip)
             return 1;

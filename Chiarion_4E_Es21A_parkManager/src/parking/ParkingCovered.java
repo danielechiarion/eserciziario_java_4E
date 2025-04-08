@@ -2,6 +2,10 @@ package parking;
 
 import vehicle.*;
 
+/**
+ * Class that manages a covered parking
+ * for the most important cars of the group
+ */
 public class ParkingCovered {
     /**
      * Covered parking lot
