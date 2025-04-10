@@ -18,13 +18,15 @@ public abstract class FileMedia implements Media, Cloneable{
     }
 
     private void setFilePath(String filePath)throws FileNotFoundException{
-        if(!Files.exists(Paths.get(this.filePath)))
+        if(!Files.exists(Paths.get(filePath)))
             throw new FileNotFoundException("Percorso non trovato");
 
         this.filePath = filePath;
     }
 
     private void setClip(String filePath)throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+        /* quest'operazione è consentita solo
+        * con file di estensione .wav */
         File file = new File(filePath);
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
         this.clip = AudioSystem.getClip();
@@ -64,9 +66,9 @@ public abstract class FileMedia implements Media, Cloneable{
     }
 
     @Override
-    public Video clone(){
+    public FileMedia clone(){
         try{
-            return (Video) super.clone();
+            return (FileMedia) super.clone();
         } catch (CloneNotSupportedException e) {
             return null;
         }

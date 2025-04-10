@@ -1,11 +1,12 @@
 package playlist;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import mediaPlaylist.*;
 
 public class GestionePlayer {
-    private ArrayList<Media> playlist;
+    private ArrayList<FileMedia> playlist;
     private int currentIndex;
 
     public GestionePlayer(){
@@ -14,23 +15,23 @@ public class GestionePlayer {
     }
 
     /* GETTER */
-    public ArrayList<Media> getPlaylist() {
-        ArrayList<Media> clone = new ArrayList<>();
-        for(Media currentMedia : this.playlist)
+    public ArrayList<FileMedia> getPlaylist() {
+        ArrayList<FileMedia> clone = new ArrayList<>();
+        for(FileMedia currentMedia : this.playlist)
             clone.add(currentMedia.clone());
 
         return clone;
     }
 
     /* ALTRI METODI */
-    public void aggiungiMedia(Media media)throws Exception{
+    public void aggiungiMedia(FileMedia media)throws Exception{
         if(this.playlist.contains(media))
             throw new Exception("Media già inserito");
 
         this.playlist.add(media);
     }
 
-    public void rimuoviMedia(Media media)throws Exception{
+    public void rimuoviMedia(FileMedia media)throws Exception{
         if(!this.playlist.contains(media))
             throw new Exception("Media non trovato");
         if(this.playlist.get(this.playlist.indexOf(media)).isRiproduzione())
@@ -39,7 +40,7 @@ public class GestionePlayer {
         this.playlist.remove(media);
     }
 
-    public String riproduciMedia(Media media)throws Exception{
+    public String riproduciMedia(FileMedia media)throws Exception{
         if(!this.playlist.contains(media))
             throw new Exception("Media non trovato");
 

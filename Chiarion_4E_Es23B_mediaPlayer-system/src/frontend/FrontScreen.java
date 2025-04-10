@@ -1,5 +1,6 @@
 package frontend;
 
+import java.io.File;
 import java.util.Scanner;
 
 import mediaPlaylist.*;
@@ -50,7 +51,7 @@ public class FrontScreen {
         return value;
     }
 
-    private static Media leggiMedia(Scanner scanner)throws Exception{
+    private static FileMedia leggiMedia(Scanner scanner)throws Exception{
         /* dichiarazione variabili */
         String titolo, artista, filePath;
         int durata;
@@ -70,19 +71,9 @@ public class FrontScreen {
         System.out.println("Inserisci il titolo: ");
         titolo = scanner.nextLine();
 
-        if(scelta == 1){
-            System.out.println("Inserisci l'artista: ");
-            artista = scanner.nextLine();
-
-            return new Canzone(filePath, titolo, artista);
-        }else if(scelta == 2){
-            System.out.println("Inserisci la durata (min): ");
-            durata = safeIntInput(scanner);
-
-            return new Video(titolo, durata);
-        }
-
-        return null;
+        System.out.println("Inserisci l'artista: ");
+        artista = scanner.nextLine();
+        return new Canzone(filePath, titolo, artista);
     }
 
     public static void inserimentoMedia(GestionePlayer gestionePlayer, Scanner scanner)throws Exception{
