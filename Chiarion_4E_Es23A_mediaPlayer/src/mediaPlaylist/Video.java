@@ -51,8 +51,8 @@ public class Video implements Media, Cloneable{
     }
 
     /* la differenza tra la pausa e lo stop
-    * è che lo stop non permette di riprodurre in seguito la canzone,
-    * la pausa sì */
+     * è che lo stop non permette di riprodurre in seguito la canzone,
+     * la pausa sì */
     @Override
     public String pausa(){
         this.riproduzione = false;

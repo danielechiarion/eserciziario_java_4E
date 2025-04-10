@@ -1,8 +1,6 @@
 package mediaPlaylist;
 
-import java.util.Objects;
-
-public class Canzone implements Media {
+public class Canzone implements Media, Cloneable {
     private String titolo;
     private String artista;
     private boolean riproduzione;
@@ -13,7 +11,7 @@ public class Canzone implements Media {
     }
 
     /* GETTER E SETTER */
-    public boolean isRiprodotto() {
+    public boolean isRiproduzione() {
         return riproduzione;
     }
 
@@ -48,8 +46,8 @@ public class Canzone implements Media {
     }
 
     /* a differenza della pausa,
-    * con lo stop non è più possibile tornare indietro
-    * con la canzone */
+     * con lo stop non è più possibile tornare indietro
+     * con la canzone */
     @Override
     public String stop(){
         this.riproduzione = false;

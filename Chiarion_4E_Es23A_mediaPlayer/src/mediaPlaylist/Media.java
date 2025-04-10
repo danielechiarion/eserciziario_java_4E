@@ -7,4 +7,5 @@ public interface Media{
     String getTitolo();
     Media clone();
     boolean equals(Object o);
+    boolean isRiproduzione();
 }

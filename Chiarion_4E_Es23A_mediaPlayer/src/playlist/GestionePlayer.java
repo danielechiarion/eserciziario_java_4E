@@ -33,6 +33,8 @@ public class GestionePlayer {
     public void rimuoviMedia(Media media)throws Exception{
         if(!this.playlist.contains(media))
             throw new Exception("Media non trovato");
+        if(this.playlist.get(this.playlist.indexOf(media)).isRiproduzione())
+            throw new Exception("Impossibile eliminare. Media in riproduzione");
 
         this.playlist.remove(media);
     }
@@ -75,7 +77,8 @@ public class GestionePlayer {
         if(this.playlist.isEmpty())
             throw new Exception("Nessun media trovato");
 
-        this.nextIndex();
+
+        this.stopMedia(); //effettuo prima uno stop del media che è in riproduzione
         return this.playlist.get(this.currentIndex).play();
     }
 }

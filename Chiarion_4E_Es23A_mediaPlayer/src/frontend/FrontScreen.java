@@ -74,7 +74,7 @@ public class FrontScreen {
 
             return new Canzone(titolo, artista);
         }else if(scelta == 2){
-            System.out.println("Inserisci la durata: ");
+            System.out.println("Inserisci la durata (min): ");
             durata = safeIntInput(scanner);
 
             return new Video(titolo, durata);
@@ -91,7 +91,7 @@ public class FrontScreen {
         gestionePlayer.rimuoviMedia(leggiMedia(scanner));
     }
 
-    public static void riproduzioriproduciMedia(GestionePlayer gestionePlayer, Scanner scanner)throws Exception{
+    public static void riproduzioneMedia(GestionePlayer gestionePlayer, Scanner scanner)throws Exception{
         System.out.println(gestionePlayer.riproduciMedia(leggiMedia(scanner)));
     }
 
@@ -101,5 +101,19 @@ public class FrontScreen {
 
     public static void interruzioneMedia(GestionePlayer gestionePlayer)throws Exception{
         System.out.println(gestionePlayer.pausaMedia());
+    }
+
+    public static void prossimoMedia(GestionePlayer gestionePlayer)throws Exception{
+        System.out.println(gestionePlayer.prossimoMedia());
+    }
+
+    public static void visualizzazionePlaylist(GestionePlayer gestionePlayer){
+        System.out.println("PLAYLIST");
+        gestionePlayer.getPlaylist().forEach(x -> System.out.println(x.toString()));
+        Tools.Wait(5);
+    }
+
+    public static void ripresaRiproduzioneMedia(GestionePlayer gestionePlayer)throws Exception{
+        System.out.println(gestionePlayer.riproduciMedia());
     }
 }
